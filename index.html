@@ -6,45 +6,73 @@
 
 <title>Maktabah Mukmen</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
 <style>
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial,sans-serif;
+font-family:'Poppins',sans-serif;
+scroll-behavior:smooth;
 }
 
 body{
-background:#0f1117;
+background:#080b12;
 color:white;
 overflow-x:hidden;
 }
 
+body::before{
+content:"";
+position:fixed;
+width:500px;
+height:500px;
+background:#d4af37;
+filter:blur(180px);
+opacity:.15;
+top:-200px;
+left:-200px;
+z-index:-1;
+}
+
+body::after{
+content:"";
+position:fixed;
+width:500px;
+height:500px;
+background:#3d5afe;
+filter:blur(180px);
+opacity:.15;
+bottom:-200px;
+right:-200px;
+z-index:-1;
+}
+
 header{
-padding:20px 10%;
+padding:20px 8%;
 display:flex;
 justify-content:space-between;
 align-items:center;
-background:rgba(0,0,0,0.3);
-backdrop-filter:blur(10px);
 position:sticky;
 top:0;
-z-index:100;
+background:rgba(255,255,255,.03);
+backdrop-filter:blur(20px);
+border-bottom:1px solid rgba(255,255,255,.05);
+z-index:999;
 }
 
 .logo{
 font-size:28px;
-font-weight:bold;
+font-weight:700;
 color:#d4af37;
 }
 
 nav a{
-color:white;
 text-decoration:none;
-margin-left:20px;
+margin-left:25px;
+color:white;
 transition:.3s;
 }
 
@@ -53,43 +81,54 @@ color:#d4af37;
 }
 
 .hero{
-height:100vh;
+min-height:100vh;
 display:flex;
-align-items:center;
 justify-content:center;
+align-items:center;
+padding:50px;
 text-align:center;
-padding:20px;
-background:
-linear-gradient(
-rgba(0,0,0,.7),
-rgba(0,0,0,.7)
-),
-url('https://images.unsplash.com/photo-1516979187457-637abb4f9353?q=80&w=2000');
-background-size:cover;
-background-position:center;
 }
 
-.hero-content{
-max-width:800px;
-animation:fadeIn 1.5s ease;
+.hero-box{
+max-width:900px;
+padding:50px;
+background:rgba(255,255,255,.05);
+border-radius:30px;
+backdrop-filter:blur(20px);
+border:1px solid rgba(255,255,255,.1);
+animation:fade 1.2s ease;
+}
+
+.badge{
+display:inline-block;
+padding:10px 20px;
+border-radius:30px;
+background:rgba(212,175,55,.2);
+color:#d4af37;
+margin-bottom:25px;
+font-size:14px;
 }
 
 .hero h1{
 font-size:60px;
-color:#d4af37;
+line-height:1.2;
 margin-bottom:20px;
 }
 
-.hero p{
-font-size:20px;
-line-height:1.8;
-color:#ddd;
-margin-bottom:30px;
+.gold{
+color:#d4af37;
 }
 
-.btn{
+.hero p{
+font-size:18px;
+line-height:1.8;
+color:#bbb;
+margin-bottom:35px;
+}
+
+.buttons a{
 display:inline-block;
-padding:15px 35px;
+padding:16px 30px;
 margin:10px;
 border-radius:50px;
 text-decoration:none;
@@ -97,53 +136,54 @@ font-weight:bold;
 transition:.4s;
 }
 
-.btn-primary{
+.download{
 background:#d4af37;
 color:black;
 }
 
-.btn-primary:hover{
+.download:hover{
 transform:translateY(-5px);
 }
 
-.btn-outline{
-border:2px solid #d4af37;
+.secondary{
+border:1px solid #d4af37;
 color:#d4af37;
 }
 
-.btn-outline:hover{
+.secondary:hover{
 background:#d4af37;
 color:black;
 }
 
-.features{
-padding:100px 10%;
+.section{
+padding:100px 8%;
 }
 
-.section-title{
+.title{
 text-align:center;
 font-size:40px;
-margin-bottom:60px;
+margin-bottom:50px;
 color:#d4af37;
 }
 
-.cards{
+.grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
 gap:30px;
 }
 
 .card{
-background:#1b1e27;
-padding:30px;
-border-radius:20px;
-text-align:center;
-transition:.4s;
+background:rgba(255,255,255,.04);
+padding:35px;
+border-radius:25px;
+backdrop-filter:blur(20px);
+transition:.5s;
+border:1px solid rgba(255,255,255,.06);
 }
 
 .card:hover{
 transform:translateY(-10px);
-box-shadow:0 0 25px rgba(212,175,55,.4);
+box-shadow:0 0 30px rgba(212,175,55,.3);
 }
 
 .card h3{
@@ -151,23 +191,48 @@ margin:20px 0;
 color:#d4af37;
 }
 
+.download-box{
+text-align:center;
+background:linear-gradient(135deg,#d4af37,#ffdd57);
+padding:60px;
+border-radius:30px;
+color:black;
+}
+
+.download-box h2{
+margin-bottom:15px;
+font-size:35px;
+}
+
+.download-btn{
+display:inline-block;
+margin-top:25px;
+padding:18px 40px;
+background:black;
+color:white;
+text-decoration:none;
+border-radius:50px;
+font-weight:bold;
+}
+
 footer{
 padding:30px;
 text-align:center;
-background:#08090d;
-margin-top:50px;
-color:#999;
+color:#777;
 }
 
-@keyframes fadeIn{
+@keyframes fade{
+
 from{
 opacity:0;
-transform:translateY(40px);
+transform:translateY(50px);
 }
+
 to{
 opacity:1;
 transform:translateY(0);
 }
+
 }
 
 @media(max-width:768px){
@@ -176,82 +241,123 @@ transform:translateY(0);
 font-size:40px;
 }
 
-.hero p{
-font-size:16px;
-}
-
 nav{
 display:none;
 }
 
 }
+
 </style>
 </head>
 
 <body>
 
 <header>
-<div class="logo">📚 Maktabah Mukmen</div>
+
+<div class="logo">
+📚 Maktabah Mukmen
+</div>
 
 <nav>
 <a href="#">Beranda</a>
 <a href="#fitur">Fitur</a>
-<a href="#">Tentang</a>
+<a href="#download">Download</a>
 </nav>
+
 </header>
+
 
 <section class="hero">
 
-<div class="hero-content">
+<div class="hero-box">
 
-<h1>Maktabah Mukmen</h1>
+<div class="badge">
+✨ Perpustakaan Islam Digital Modern
+</div>
+
+<h1>
+Membaca Lebih Mudah Dengan
+<span class="gold">Maktabah Mukmen</span>
+</h1>
 
 <p>
-Aplikasi perpustakaan Islam modern dengan desain elegan,
-cepat, dan mudah digunakan untuk membaca serta mencari
-referensi ilmu.
+Temukan kitab, referensi, dan berbagai sumber ilmu Islam
+dalam satu aplikasi yang cepat, elegan, dan nyaman digunakan.
 </p>
 
-<a href="#" class="btn btn-primary">
-Download Aplikasi
+<div class="buttons">
+
+<a href="#download" class="download">
+⬇ Download Sekarang
 </a>
 
-<a href="#" class="btn btn-outline">
-Pelajari Lebih Lanjut
+<a href="#fitur" class="secondary">
+Pelajari Fitur
 </a>
+
+</div>
 
 </div>
 
 </section>
 
-<section class="features" id="fitur">
 
-<h2 class="section-title">
-Fitur Utama
+<section class="section" id="fitur">
+
+<h2 class="title">
+Fitur Unggulan
 </h2>
 
-<div class="cards">
+<div class="grid">
 
 <div class="card">
-<h3>📖 Koleksi Buku</h3>
+<h3>📖 Koleksi Kitab</h3>
 <p>
-Akses berbagai kitab dan referensi dengan cepat.
+Ribuan referensi dan kitab tersedia.
 </p>
 </div>
 
 <div class="card">
 <h3>🌙 Mode Gelap</h3>
 <p>
-Tema gelap elegan seperti aplikasi Flutter kamu.
+Tampilan elegan dan nyaman di mata.
 </p>
 </div>
 
 <div class="card">
-<h3>🔍 Pencarian Cepat</h3>
+<h3>🔎 Pencarian Cepat</h3>
 <p>
-Temukan kitab dan pembahasan secara instan.
+Temukan kitab dan pembahasan dengan instan.
 </p>
 </div>
+
+<div class="card">
+<h3>⚡ Performa Cepat</h3>
+<p>
+Ringan dan responsif di berbagai perangkat.
+</p>
+</div>
+
+</div>
+
+</section>
+
+
+<section class="section" id="download">
+
+<div class="download-box">
+
+<h2>
+Download Maktabah Mukmen
+</h2>
+
+<p>
+Versi terbaru siap digunakan
+</p>
+
+<a href="#" class="download-btn">
+📱 Download APK
+</a>
 
 </div>
 
@@ -259,7 +365,7 @@ Temukan kitab dan pembahasan secara instan.
 
 <footer>
 
-© 2026 Maktabah Mukmen
+© 2026 Maktabah Mukmen — All Rights Reserved
 
 </footer>
 
