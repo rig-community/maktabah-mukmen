@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Maktabah Mukmen</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#0f1117;
+color:white;
+overflow-x:hidden;
+}
+
+header{
+padding:20px 10%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(0,0,0,0.3);
+backdrop-filter:blur(10px);
+position:sticky;
+top:0;
+z-index:100;
+}
+
+.logo{
+font-size:28px;
+font-weight:bold;
+color:#d4af37;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin-left:20px;
+transition:.3s;
+}
+
+nav a:hover{
+color:#d4af37;
+}
+
+.hero{
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:20px;
+background:
+linear-gradient(
+rgba(0,0,0,.7),
+rgba(0,0,0,.7)
+),
+url('https://images.unsplash.com/photo-1516979187457-637abb4f9353?q=80&w=2000');
+background-size:cover;
+background-position:center;
+}
+
+.hero-content{
+max-width:800px;
+animation:fadeIn 1.5s ease;
+}
+
+.hero h1{
+font-size:60px;
+color:#d4af37;
+margin-bottom:20px;
+}
+
+.hero p{
+font-size:20px;
+line-height:1.8;
+color:#ddd;
+margin-bottom:30px;
+}
+
+.btn{
+display:inline-block;
+padding:15px 35px;
+margin:10px;
+border-radius:50px;
+text-decoration:none;
+font-weight:bold;
+transition:.4s;
+}
+
+.btn-primary{
+background:#d4af37;
+color:black;
+}
+
+.btn-primary:hover{
+transform:translateY(-5px);
+}
+
+.btn-outline{
+border:2px solid #d4af37;
+color:#d4af37;
+}
+
+.btn-outline:hover{
+background:#d4af37;
+color:black;
+}
+
+.features{
+padding:100px 10%;
+}
+
+.section-title{
+text-align:center;
+font-size:40px;
+margin-bottom:60px;
+color:#d4af37;
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+}
+
+.card{
+background:#1b1e27;
+padding:30px;
+border-radius:20px;
+text-align:center;
+transition:.4s;
+}
+
+.card:hover{
+transform:translateY(-10px);
+box-shadow:0 0 25px rgba(212,175,55,.4);
+}
+
+.card h3{
+margin:20px 0;
+color:#d4af37;
+}
+
+footer{
+padding:30px;
+text-align:center;
+background:#08090d;
+margin-top:50px;
+color:#999;
+}
+
+@keyframes fadeIn{
+from{
+opacity:0;
+transform:translateY(40px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+@media(max-width:768px){
+
+.hero h1{
+font-size:40px;
+}
+
+.hero p{
+font-size:16px;
+}
+
+nav{
+display:none;
+}
+
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="logo">📚 Maktabah Mukmen</div>
+
+<nav>
+<a href="#">Beranda</a>
+<a href="#fitur">Fitur</a>
+<a href="#">Tentang</a>
+</nav>
+</header>
+
+<section class="hero">
+
+<div class="hero-content">
+
+<h1>Maktabah Mukmen</h1>
+
+<p>
+Aplikasi perpustakaan Islam modern dengan desain elegan,
+cepat, dan mudah digunakan untuk membaca serta mencari
+referensi ilmu.
+</p>
+
+<a href="#" class="btn btn-primary">
+Download Aplikasi
+</a>
+
+<a href="#" class="btn btn-outline">
+Pelajari Lebih Lanjut
+</a>
+
+</div>
+
+</section>
+
+<section class="features" id="fitur">
+
+<h2 class="section-title">
+Fitur Utama
+</h2>
+
+<div class="cards">
+
+<div class="card">
+<h3>📖 Koleksi Buku</h3>
+<p>
+Akses berbagai kitab dan referensi dengan cepat.
+</p>
+</div>
+
+<div class="card">
+<h3>🌙 Mode Gelap</h3>
+<p>
+Tema gelap elegan seperti aplikasi Flutter kamu.
+</p>
+</div>
+
+<div class="card">
+<h3>🔍 Pencarian Cepat</h3>
+<p>
+Temukan kitab dan pembahasan secara instan.
+</p>
+</div>
+
+</div>
+
+</section>
+
+<footer>
+
+© 2026 Maktabah Mukmen
+
+</footer>
+
+</body>
+</html>
