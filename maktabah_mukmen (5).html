@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maktabah Mukmen — Perpustakaan Kitab Islam Digital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --ink:        #1a1209;
+  --ink-mid:    #3b2c16;
+  --ink-muted:  #7a6242;
+  --parch:      #f5eedc;
+  --parch-dark: #e8dfc5;
+  --parch-deep: #d4c9a8;
+  --rust:       #8b3a1a;
+  --rust-light: #b04c22;
+  --ochre:      #c48b1a;
+  --ochre-pale: #f0d88a;
+  --teal:       #1a5c5c;
+  --teal-light: #267272;
+  --white:      #fffdf7;
+  --r: 6px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--parch);
+  color: var(--ink);
+  line-height: 1.7;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 2.5rem;
+  height: 60px;
+  background: var(--ink);
+  border-bottom: 2px solid var(--ochre);
+}
+.nav-brand {
+  display: flex; align-items: center; gap: 0.75rem;
+}
+.nav-brand-ar {
+  font-family: 'Amiri', serif;
+  font-size: 1.35rem;
+  color: var(--ochre-pale);
+  line-height: 1;
+}
+.nav-brand-id {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  display: block;
+  margin-top: 1px;
+}
+.nav-sep { width: 1px; height: 28px; background: rgba(255,255,255,0.15); }
+nav ul { display: flex; gap: 1.75rem; list-style: none; }
+nav ul a {
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  transition: color 0.2s;
+}
+nav ul a:hover { color: var(--ochre-pale); }
+.nav-dl {
+  background: var(--rust);
+  color: #fff !important;
+  padding: 0.45rem 1.1rem;
+  border-radius: var(--r);
+  font-weight: 500 !important;
+  transition: background 0.2s !important;
+}
+.nav-dl:hover { background: var(--rust-light) !important; color: #fff !important; }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  background: var(--ink);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 7rem 5rem 4rem;
+  gap: 4rem;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.018'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.hero-left { position: relative; z-index: 1; }
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ochre);
+  margin-bottom: 1.5rem;
+}
+.hero-eyebrow::before, .hero-eyebrow::after {
+  content: '';
+  display: block;
+  width: 24px; height: 1px;
+  background: var(--ochre);
+  opacity: 0.5;
+}
+.hero-ar {
+  font-family: 'Amiri', serif;
+  font-size: clamp(2.5rem, 5vw, 4.2rem);
+  color: var(--ochre-pale);
+  line-height: 1.15;
+  margin-bottom: 0.25rem;
+}
+.hero-id {
+  font-family: 'Lora', serif;
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 400;
+  margin-bottom: 1.75rem;
+}
+.hero-tagline {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.8;
+  max-width: 420px;
+  margin-bottom: 2.5rem;
+}
+.hero-tagline strong { color: rgba(255,255,255,0.85); font-weight: 500; }
+.hero-btns { display: flex; gap: 0.875rem; flex-wrap: wrap; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  background: var(--rust);
+  color: #fff;
+  padding: 0.8rem 1.75rem;
+  border-radius: var(--r);
+  font-size: 0.9rem; font-weight: 500;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+}
+.btn-primary:hover { background: var(--rust-light); transform: translateY(-2px); }
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: transparent;
+  color: rgba(255,255,255,0.55);
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 0.8rem 1.75rem;
+  border-radius: var(--r);
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s;
+}
+.btn-ghost:hover { border-color: rgba(255,255,255,0.5); color: rgba(255,255,255,0.85); }
+
+/* Hero Right — fake phone mockup / bookshelf visual */
+.hero-right {
+  position: relative; z-index: 1;
+  display: flex; justify-content: center; align-items: center;
+}
+.bookshelf {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px;
+  padding: 2rem;
+  width: 340px;
+}
+.shelf-label {
+  font-family: 'Amiri', serif;
+  font-size: 0.85rem;
+  color: var(--ochre);
+  margin-bottom: 1.25rem;
+  text-align: center;
+  letter-spacing: 0.05em;
+}
+.shelf-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.book-spine {
+  height: 64px;
+  border-radius: 4px 6px 6px 4px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Amiri', serif;
+  font-size: 0.55rem;
+  color: rgba(255,255,255,0.7);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  padding: 4px;
+  border-left: 3px solid rgba(0,0,0,0.25);
+  cursor: default;
+  transition: transform 0.2s;
+  text-align: center;
+}
+.book-spine:hover { transform: translateY(-4px); }
+.b1  { background: #5c2a0e; }
+.b2  { background: #1a4a4a; }
+.b3  { background: #2a3d1a; }
+.b4  { background: #3d2a0a; }
+.b5  { background: #1a2a4a; }
+.b6  { background: #4a1a1a; }
+.b7  { background: #2a1a4a; }
+.b8  { background: #1a3d2a; }
+.b9  { background: #4a3a1a; }
+.b10 { background: #3a1a2a; }
+.b11 { background: #1a3a4a; }
+.b12 { background: #2a4a1a; }
+.shelf-divider {
+  height: 6px;
+  background: linear-gradient(90deg, #3d2a0a, #6b4a1a, #3d2a0a);
+  border-radius: 2px;
+  margin: 4px 0;
+}
+.shelf-stat {
+  display: flex; justify-content: space-around;
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.shelf-stat-item { text-align: center; }
+.shelf-stat-num {
+  display: block;
+  font-size: 1.3rem; font-weight: 600;
+  color: var(--ochre-pale);
+  font-family: 'Lora', serif;
+}
+.shelf-stat-lbl {
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.35);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* ── SECTION BASE ── */
+section { padding: 5.5rem 5rem; }
+.s-label {
+  display: inline-block;
+  font-size: 0.7rem; font-weight: 500;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--rust);
+  margin-bottom: 0.6rem;
+}
+.s-title {
+  font-family: 'Lora', serif;
+  font-size: clamp(1.7rem, 3vw, 2.4rem);
+  color: var(--ink);
+  margin-bottom: 0.75rem;
+  line-height: 1.25;
+}
+.s-title span { color: var(--rust); }
+.s-desc {
+  color: var(--ink-muted);
+  font-size: 0.95rem;
+  max-width: 520px;
+  line-height: 1.75;
+}
+
+/* ── KOLEKSI KITAB ── */
+.koleksi-section { background: var(--white); }
+.koleksi-header { margin-bottom: 3rem; }
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
+}
+.cat-card {
+  background: var(--parch);
+  border: 1px solid var(--parch-deep);
+  border-radius: 10px;
+  padding: 1.5rem;
+  transition: transform 0.22s, box-shadow 0.22s, border-color 0.22s;
+  position: relative;
+  overflow: hidden;
+}
+.cat-card::after {
+  content: '';
+  position: absolute; left: 0; top: 0; bottom: 0;
+  width: 4px;
+  border-radius: 10px 0 0 10px;
+}
+.cat-card.fiqih::after   { background: var(--rust); }
+.cat-card.hadits::after  { background: var(--teal); }
+.cat-card.tafsir::after  { background: var(--ochre); }
+.cat-card.tasawuf::after { background: #6a3a7a; }
+.cat-card.nahwu::after   { background: #2a6a2a; }
+.cat-card.tarikh::after  { background: #1a4a7a; }
+.cat-card.tajwid::after  { background: #7a3a1a; }
+.cat-card.diwan::after   { background: #4a1a6a; }
+.cat-card:hover { transform: translateY(-5px); box-shadow: 0 12px 32px rgba(26,18,9,0.12); border-color: var(--parch-deep); }
+.cat-ar {
+  font-family: 'Amiri', serif;
+  font-size: 1.6rem;
+  color: var(--ink-mid);
+  margin-bottom: 0.25rem;
+  line-height: 1.2;
+}
+.cat-id {
+  font-size: 0.8rem; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-bottom: 0.75rem;
+}
+.cat-desc { font-size: 0.875rem; color: var(--ink-muted); line-height: 1.65; margin-bottom: 1rem; }
+.cat-books {
+  display: flex; flex-wrap: wrap; gap: 0.4rem;
+}
+.cat-book-tag {
+  font-size: 0.72rem;
+  background: rgba(26,18,9,0.06);
+  color: var(--ink-mid);
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  font-family: 'Amiri', serif;
+}
+
+/* ── FITUR ── */
+.fitur-section { background: var(--parch); }
+.fitur-header { margin-bottom: 3rem; }
+.fitur-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+.fitur-item {
+  display: flex; gap: 1.25rem;
+  align-items: flex-start;
+  padding: 1.5rem;
+  background: var(--white);
+  border-radius: 10px;
+  border: 1px solid var(--parch-deep);
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.fitur-item:hover { box-shadow: 0 6px 24px rgba(26,18,9,0.08); transform: translateY(-3px); }
+.fitur-ico {
+  width: 44px; height: 44px; flex-shrink: 0;
+  background: var(--parch);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem;
+  border: 1px solid var(--parch-deep);
+}
+.fitur-item h3 {
+  font-size: 0.95rem; font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 0.3rem;
+}
+.fitur-item p { font-size: 0.85rem; color: var(--ink-muted); line-height: 1.65; }
+
+/* ── BAHTSUL MASAIL HIGHLIGHT ── */
+.bm-section {
+  background: var(--teal);
+  color: white;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  padding: 5rem;
+}
+.bm-left .s-label { color: var(--ochre-pale); }
+.bm-left .s-title { color: white; font-family: 'Lora', serif; }
+.bm-left .s-desc { color: rgba(255,255,255,0.65); max-width: 100%; }
+.bm-list { margin-top: 1.75rem; display: flex; flex-direction: column; gap: 0.75rem; }
+.bm-list li {
+  display: flex; align-items: flex-start; gap: 0.75rem;
+  font-size: 0.9rem; color: rgba(255,255,255,0.8);
+  list-style: none;
+}
+.bm-list li::before {
+  content: '✦';
+  color: var(--ochre-pale);
+  font-size: 0.65rem;
+  margin-top: 5px;
+  flex-shrink: 0;
+}
+.bm-right {
+  background: rgba(0,0,0,0.2);
+  border-radius: 12px;
+  padding: 2rem;
+  border: 1px solid rgba(255,255,255,0.12);
+}
+.bm-card-title {
+  font-family: 'Amiri', serif;
+  font-size: 1.1rem;
+  color: var(--ochre-pale);
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.bm-result {
+  padding: 0.875rem 1rem;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.06);
+  margin-bottom: 0.75rem;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.bm-result-title { font-size: 0.875rem; font-weight: 500; color: rgba(255,255,255,0.9); margin-bottom: 0.2rem; }
+.bm-result-src { font-size: 0.75rem; color: rgba(255,255,255,0.4); }
+.bm-result-tag {
+  display: inline-block;
+  font-size: 0.65rem;
+  background: var(--ochre);
+  color: var(--ink);
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  font-weight: 600;
+  margin-left: 0.4rem;
+  vertical-align: middle;
+}
+
+/* ── DOWNLOAD SECTION ── */
+.dl-section {
+  background: var(--ink);
+  padding: 5.5rem 5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+.dl-left .s-label { color: var(--ochre); }
+.dl-left .s-title { color: var(--white); }
+.dl-left .s-desc { color: rgba(255,255,255,0.5); max-width: 100%; }
+.dl-points { margin-top: 1.75rem; display: flex; flex-direction: column; gap: 0.6rem; }
+.dl-point {
+  display: flex; align-items: center; gap: 0.75rem;
+  font-size: 0.875rem; color: rgba(255,255,255,0.65);
+}
+.dl-point::before { content: '✓'; color: var(--ochre); font-weight: 700; }
+
+.dl-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px;
+  padding: 2.5rem;
+  text-align: center;
+}
+.dl-app-icon {
+  width: 88px; height: 88px;
+  margin: 0 auto 1.25rem;
+  background: var(--rust);
+  border-radius: 20px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2.2rem;
+}
+.dl-app-name {
+  font-family: 'Amiri', serif;
+  font-size: 1.6rem;
+  color: var(--ochre-pale);
+  margin-bottom: 0.2rem;
+}
+.dl-app-sub {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 1.75rem;
+}
+.dl-meta {
+  display: flex; justify-content: center; gap: 1.5rem;
+  margin-bottom: 1.75rem;
+  padding: 1rem;
+  background: rgba(255,255,255,0.04);
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.07);
+}
+.dl-meta-item { text-align: center; }
+.dl-meta-label { font-size: 0.68rem; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.08em; display: block; margin-bottom: 3px; }
+.dl-meta-val { font-size: 0.9rem; font-weight: 500; color: rgba(255,255,255,0.8); }
+.btn-dl-big {
+  display: flex; align-items: center; justify-content: center; gap: 0.75rem;
+  width: 100%;
+  background: var(--rust);
+  color: white;
+  padding: 1rem;
+  border-radius: 10px;
+  font-size: 1rem; font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+  margin-bottom: 0.75rem;
+}
+.btn-dl-big:hover { background: var(--rust-light); transform: translateY(-2px); }
+.dl-note {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.25);
+  line-height: 1.6;
+}
+
+/* ── CARA INSTALL ── */
+.install-section { background: var(--white); }
+.install-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-top: 3rem;
+  counter-reset: step;
+}
+.install-step {
+  position: relative;
+  padding: 1.75rem 1.5rem;
+  background: var(--parch);
+  border-radius: 10px;
+  border: 1px solid var(--parch-deep);
+}
+.install-step::before {
+  counter-increment: step;
+  content: counter(step, decimal-leading-zero);
+  position: absolute; top: -14px; left: 1.5rem;
+  font-family: 'Lora', serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--rust);
+  background: var(--white);
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--parch-deep);
+}
+.install-step h4 {
+  font-size: 0.95rem; font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 0.4rem;
+}
+.install-step p { font-size: 0.85rem; color: var(--ink-muted); line-height: 1.65; }
+
+/* ── AMAL JARIYAH ── */
+.amal-section {
+  background: var(--parch-dark);
+  text-align: center;
+  padding: 4rem 5rem;
+  border-top: 1px solid var(--parch-deep);
+  border-bottom: 1px solid var(--parch-deep);
+}
+.amal-ar {
+  font-family: 'Amiri', serif;
+  font-size: 2.2rem;
+  color: var(--ink-mid);
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+.amal-text {
+  font-family: 'Lora', serif;
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--ink-muted);
+  max-width: 540px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--ink);
+  padding: 2.5rem 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  border-top: 2px solid var(--ochre);
+}
+.footer-brand {
+  font-family: 'Amiri', serif;
+  font-size: 1.2rem;
+  color: var(--ochre-pale);
+}
+.footer-text {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.3);
+  text-align: right;
+}
+.footer-text span { color: var(--ochre); }
+
+/* ── ULASAN ── */
+.ulasan-section { background: var(--white); padding: 5.5rem 5rem; }
+.ulasan-form-wrap { margin: 2.5rem auto 3rem; max-width: 600px; }
+.ulasan-form-card {
+  background: var(--parch);
+  border: 1px solid var(--parch-deep);
+  border-radius: 12px;
+  padding: 2rem;
+}
+.ulasan-form-title {
+  font-family: 'Lora', serif;
+  font-size: 1.1rem;
+  color: var(--ink);
+  margin-bottom: 1.25rem;
+}
+.form-group { margin-bottom: 1rem; }
+.form-group label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-bottom: 0.4rem;
+}
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.65rem 0.9rem;
+  border: 1px solid var(--parch-deep);
+  border-radius: var(--r);
+  background: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  color: var(--ink);
+  outline: none;
+  transition: border-color 0.2s;
+  resize: none;
+}
+.form-group input:focus,
+.form-group textarea:focus { border-color: var(--rust); }
+.star-picker { display: flex; gap: 6px; font-size: 1.6rem; cursor: pointer; }
+.star-picker span { color: var(--parch-deep); transition: color 0.15s; }
+.star-picker span.aktif { color: var(--ochre); }
+#btn-kirim {
+  background: var(--rust);
+  color: white;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: var(--r);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-family: 'DM Sans', sans-serif;
+  margin-top: 0.25rem;
+}
+#btn-kirim:hover { background: var(--rust-light); }
+#btn-kirim:disabled { background: var(--parch-deep); cursor: not-allowed; }
+
+.ulasan-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.ulasan-card {
+  background: var(--parch);
+  border: 1px solid var(--parch-deep);
+  border-radius: 10px;
+  padding: 1.5rem;
+  animation: fadeIn 0.4s ease;
+}
+@keyframes fadeIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:none; } }
+.ulasan-stars { color: var(--ochre); font-size: 0.95rem; margin-bottom: 0.75rem; }
+.ulasan-teks {
+  font-size: 0.9rem;
+  color: var(--ink-mid);
+  line-height: 1.7;
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+.ulasan-author { display: flex; align-items: center; gap: 0.65rem; }
+.ulasan-avatar {
+  width: 36px; height: 36px;
+  background: rgba(139,58,26,0.1);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 0.8rem;
+  color: var(--rust);
+  flex-shrink: 0;
+}
+.ulasan-nama { font-size: 0.875rem; font-weight: 600; color: var(--ink); }
+.ulasan-peran { font-size: 0.75rem; color: var(--ink-muted); }
+.ulasan-empty {
+  text-align: center;
+  padding: 2rem;
+  color: var(--ink-muted);
+  font-size: 0.9rem;
+  grid-column: 1/-1;
+}
+.ulasan-loading {
+  text-align: center;
+  padding: 2rem;
+  color: var(--ink-muted);
+  font-size: 0.9rem;
+  grid-column: 1/-1;
+}
+
+/* ── REVEAL ── */
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.vis { opacity: 1; transform: none; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; padding: 6rem 2rem 3rem; gap: 3rem; }
+  .hero-right { display: none; }
+  section { padding: 4rem 1.75rem; }
+  .bm-section, .dl-section { grid-template-columns: 1fr; padding: 4rem 1.75rem; gap: 2.5rem; }
+  .amal-section { padding: 3.5rem 1.75rem; }
+  footer { padding: 2rem 1.75rem; }
+  nav ul { display: none; }
+  nav { padding: 0 1.25rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">
+    <div>
+      <span class="nav-brand-ar">المكتبة المؤمن</span>
+      <span class="nav-brand-id">Maktabah Mukmen</span>
+    </div>
+    <div class="nav-sep"></div>
+  </div>
+  <ul>
+    <li><a href="#koleksi">Koleksi Kitab</a></li>
+    <li><a href="#fitur">Fitur</a></li>
+    <li><a href="#bahtsul">Bahtsul Masail</a></li>
+    <li><a href="#download">Download</a></li>
+    <li><a href="#install">Cara Install</a></li>
+    <li><a href="#download" class="nav-dl">↓ APK</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <span class="hero-eyebrow">Perpustakaan Kitab Islam Digital</span>
+    <h1 class="hero-ar">المكتبة المؤمن</h1>
+    <p class="hero-id">Maktabah Mukmen</p>
+    <p class="hero-tagline">
+      Warisan ulama dalam genggaman. Ratusan kitab Arab klasik — Fiqih, Hadits, Tafsir, Tasawuf, Nahwu, dan lebih banyak lagi — untuk <strong>santri, penuntut ilmu, dan siapa saja</strong> yang ingin mendekat pada ilmu agama.
+    </p>
+    <div class="hero-btns">
+      <a href="#download" class="btn-primary">↓ Download Android</a>
+      <a href="https://rig-community.github.io/maktabah-mukmen/app" target="_blank" class="btn-ghost">🌐 Buka Versi Web →</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="bookshelf">
+      <p class="shelf-label">مَنْ سَلَكَ طَرِيقاً يَلْتَمِسُ فِيهِ عِلْماً</p>
+      <div class="shelf-row">
+        <div class="book-spine b1">الفقه الإسلامي</div>
+        <div class="book-spine b2">صحيح البخاري</div>
+        <div class="book-spine b3">تفسير ابن كثير</div>
+        <div class="book-spine b4">إحياء علوم الدين</div>
+      </div>
+      <div class="shelf-divider"></div>
+      <div class="shelf-row">
+        <div class="book-spine b5">ألفية ابن مالك</div>
+        <div class="book-spine b6">رياض الصالحين</div>
+        <div class="book-spine b7">فتح الباري</div>
+        <div class="book-spine b8">الأذكار</div>
+      </div>
+      <div class="shelf-divider"></div>
+      <div class="shelf-row">
+        <div class="book-spine b9">سيرة النبي</div>
+        <div class="book-spine b10">البردة</div>
+        <div class="book-spine b11">تحفة الأطفال</div>
+        <div class="book-spine b12">المنهاج</div>
+      </div>
+      <div class="shelf-stat">
+        <div class="shelf-stat-item"><span class="shelf-stat-num">500+</span><span class="shelf-stat-lbl">Kitab</span></div>
+        <div class="shelf-stat-item"><span class="shelf-stat-num">8</span><span class="shelf-stat-lbl">Kategori</span></div>
+        <div class="shelf-stat-item"><span class="shelf-stat-num">Gratis</span><span class="shelf-stat-lbl">Selamanya</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KOLEKSI KITAB -->
+<section class="koleksi-section" id="koleksi">
+  <div class="koleksi-header reveal">
+    <span class="s-label">Koleksi Warisan Ulama</span>
+    <h2 class="s-title">Ratusan Kitab dalam <span>8 Kategori</span></h2>
+    <p class="s-desc">Jelajahi perpustakaan digital layaknya file explorer — masuk ke kategori, subfolder, lalu buka PDF langsung atau unduh untuk dibaca offline.</p>
+  </div>
+  <div class="categories-grid">
+    <div class="cat-card fiqih reveal">
+      <p class="cat-ar">الفقه</p>
+      <p class="cat-id">Fiqih</p>
+      <p class="cat-desc">Hukum-hukum Islam dari empat mazhab — Syafi'i, Hanafi, Maliki, Hambali. Dari fikih ibadah hingga muamalah.</p>
+      <div class="cat-books">
+        <span class="cat-book-tag">المنهاج</span>
+        <span class="cat-book-tag">فتح القريب</span>
+        <span class="cat-book-tag">البداية</span>
+        <span class="cat-book-tag">التقريب</span>
+      </div>
+    </div>
+    <div class="cat-card hadits reveal">
+      <p class="cat-ar">الحديث</p>
+      <p class="cat-id">Hadits</p>
+      <p class="cat-desc">Kutub sittah dan koleksi hadis lengkap beserta syarahnya — Shahih, Sunan, Musnad, Muwatha.</p>
+      <div class="cat-books">
+        <span class="cat-book-tag">صحيح البخاري</span>
+        <span class="cat-book-tag">صحيح مسلم</span>
+        <span class="cat-book-tag">الأربعون النووية</span>
+      </div>
+    </div>
+    <div class="cat-card tafsir reveal">
+      <p class="cat-ar">التفسير</p>
+      <p class="cat-id">Tafsir</p>
+      <p class="cat-desc">Penjelas makna Al-Qur'an dari para mufassir terkemuka, klasik maupun kontemporer, dalam bahasa Arab dan Indonesia.</p>
+      <div class="cat-books">
+        <span class="cat-book-tag">ابن كثير</span>
+        <span class="cat-book-tag">الجلالين</span>
+        <span class="cat-book-tag">الطبري</span>
+      </div>
+    </div>
+    <div class="cat-card tasawuf reveal">
+      <p class="cat-ar">التصوف</p>
+      <p class="cat-id">Tasawuf</p>
+      <p class="cat-desc">Kitab tentang tazkiyatun nafs, maqamat, dan perjalanan batin menuju Allah — dari Al-Ghazali hingga Ibnu Arabi.</p>
+      <div class="cat-books">
+        <span class="cat-book-tag">إحياء علوم الدين</span>
+        <span class="cat-book-tag">الرسالة</span>
+        <span class="cat-book-tag">منهاج العابدين</span>
+      </div>
+    </div>
+    <div class="cat-card nahwu reveal">
+      <p class="cat-ar">النحو والصرف</p>
+      <p class="cat-id">Nahwu & Shorof</p>
+      <p class="cat-desc">Tata bahasa Arab lengkap — dari kitab pemula seperti Jurumiyah hingga Alfiyah Ibnu Malik yang masyhur.</p>
+      <div class="cat-books">
+        <span class="cat-book-tag">الآجرومية</span>
+        <span class="cat-book-tag">ألفية ابن مالك</span>
+        <span class="cat-book-tag">الكيلاني</span>
+      </div>
+    </div>
+    <div class="cat-card tajwid reveal">
+      <p class="cat-ar">التجويد</p>
+      <p class="cat-id">Tajwid</p>
+      <p class="cat-desc">Ilmu membaca Al-Qur'an dengan baik dan benar. Panduan tajwid dari yang dasar hingga kitab matan dan syarah.</p>
+      <div class="cat-books">
+        <span class="cat-book-tag">تحفة الأطفال</span>
+        <span class="cat-book-tag">الجزرية</span>
+        <span class="cat-book-tag">فتح الأقفال</span>
+      </div>
+    </div>
+    <div class="cat-card tarikh reveal">
+      <p class="cat-ar">التاريخ والسيرة</p>
+      <p class="cat-id">Tarikh & Sirah</p>
+      <p class="cat-desc">Sejarah Islam dan biografi Nabi ﷺ — dari Sirah Nabawiyyah, Khulafaur Rasyidin, hingga sejarah peradaban Islam.</p>
+      <div class="cat-books">
+        <span class="cat-book-tag">سيرة ابن هشام</span>
+        <span class="cat-book-tag">الرحيق المختوم</span>
+        <span class="cat-book-tag">فقه السيرة</span>
+      </div>
+    </div>
+    <div class="cat-card diwan reveal">
+      <p class="cat-ar">الديوان والمتون</p>
+      <p class="cat-id">Diwan & Matan</p>
+      <p class="cat-desc">Karya sastra Arab dan matan-matan ilmu agama yang sering dihafalkan di pesantren dan halaqah.</p>
+      <div class="cat-books">
+        <span class="cat-book-tag">البردة</span>
+        <span class="cat-book-tag">الدلائل</span>
+        <span class="cat-book-tag">تيجان الدراري</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FITUR -->
+<section class="fitur-section" id="fitur">
+  <div class="fitur-header reveal">
+    <span class="s-label">Dirancang untuk Penuntut Ilmu</span>
+    <h2 class="s-title">Fitur yang Memudahkan <span>Belajar Kitab</span></h2>
+    <p class="s-desc">Setiap fitur lahir dari kebutuhan nyata santri dan penuntut ilmu dalam mengakses dan mempelajari kitab-kitab klasik.</p>
+  </div>
+  <div class="fitur-grid">
+    <div class="fitur-item reveal">
+      <div class="fitur-ico">📂</div>
+      <div>
+        <h3>Navigasi Folder</h3>
+        <p>Jelajahi kitab seperti file explorer — masuk ke kategori, subfolder, hingga menemukan kitab yang dicari dengan mudah.</p>
+      </div>
+    </div>
+    <div class="fitur-item reveal">
+      <div class="fitur-ico">📶</div>
+      <div>
+        <h3>Baca Online & Offline</h3>
+        <p>Streaming PDF langsung tanpa unduh, atau simpan ke perangkat untuk dibaca tanpa koneksi internet di mana saja.</p>
+      </div>
+    </div>
+    <div class="fitur-item reveal">
+      <div class="fitur-ico">🔍</div>
+      <div>
+        <h3>Cari Teks dalam PDF</h3>
+        <p>Temukan kata, istilah, atau kalimat langsung di dalam kitab menggunakan fitur pencarian teks bawaan yang cepat.</p>
+      </div>
+    </div>
+    <div class="fitur-item reveal">
+      <div class="fitur-ico">⬇️</div>
+      <div>
+        <h3>Unduh Sekaligus</h3>
+        <p>Unduh seluruh kitab dalam satu folder sekaligus sebelum bepergian ke tempat tanpa sinyal atau saat mondok.</p>
+      </div>
+    </div>
+    <div class="fitur-item reveal">
+      <div class="fitur-ico">📖</div>
+      <div>
+        <h3>Riwayat Baca</h3>
+        <p>Otomatis menyimpan posisi halaman terakhir hingga 10 kitab terbaru. Lanjutkan membaca persis dari halaman yang ditinggalkan.</p>
+      </div>
+    </div>
+    <div class="fitur-item reveal">
+      <div class="fitur-ico">⭐</div>
+      <div>
+        <h3>Kitab Favorit</h3>
+        <p>Tandai kitab yang sering dibaca sebagai favorit untuk akses cepat langsung dari halaman utama tanpa harus mencari ulang.</p>
+      </div>
+    </div>
+    <div class="fitur-item reveal">
+      <div class="fitur-ico">🌙</div>
+      <div>
+        <h3>Mode Gelap & Terang</h3>
+        <p>Antarmuka adaptif untuk kenyamanan membaca siang maupun malam hari. Mata tetap nyaman saat belajar berlama-lama.</p>
+      </div>
+    </div>
+    <div class="fitur-item reveal">
+      <div class="fitur-ico">🌐</div>
+      <div>
+        <h3>Antarmuka Dua Bahasa</h3>
+        <p>Tampilan tersedia dalam Bahasa Indonesia dan Bahasa Arab — pilih sesuai kebiasaan dan kenyamanan belajar Anda.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BAHTSUL MASAIL -->
+<section class="bm-section" id="bahtsul">
+  <div class="bm-left reveal">
+    <span class="s-label">Fitur Unggulan</span>
+    <h2 class="s-title" style="color:white;">Bahtsul Masail<br>Terintegrasi</h2>
+    <p class="s-desc">Akses fatwa dan kajian NU Online langsung di dalam aplikasi tanpa perlu membuka browser. Cari jawaban atas permasalahan fiqih kontemporer bersama referensi kitab klasik yang tersedia.</p>
+    <ul class="bm-list">
+      <li>Ribuan hasil bahtsul masail dari berbagai forum NU</li>
+      <li>Tersambung langsung ke database NU Online</li>
+      <li>Bisa diakses paralel saat membaca kitab</li>
+      <li>Pencarian berdasarkan tema dan kata kunci</li>
+      <li>Referensi silang ke kitab-kitab dalam perpustakaan</li>
+    </ul>
+  </div>
+  <div class="bm-right reveal">
+    <p class="bm-card-title">🔎 Contoh Hasil Pencarian Bahtsul Masail</p>
+    <div class="bm-result">
+      <p class="bm-result-title">Hukum Sholat di Belakang Imam yang Beda Mazhab <span class="bm-result-tag">Fiqih</span></p>
+      <p class="bm-result-src">NU Online · Lembaga Bahtsul Masail PBNU · 2023</p>
+    </div>
+    <div class="bm-result">
+      <p class="bm-result-title">Zakat Penghasilan: Nisab dan Cara Menghitungnya <span class="bm-result-tag">Zakat</span></p>
+      <p class="bm-result-src">Bahtsul Masail Muktamar NU ke-33</p>
+    </div>
+    <div class="bm-result">
+      <p class="bm-result-title">Status Hukum Transaksi Digital dalam Islam <span class="bm-result-tag">Muamalah</span></p>
+      <p class="bm-result-src">Komisi Bahtsul Masail Diniyah Waqi'iyah</p>
+    </div>
+    <div class="bm-result">
+      <p class="bm-result-title">Tata Cara Talqin Mayit Menurut Syafi'iyah <span class="bm-result-tag">Janazah</span></p>
+      <p class="bm-result-src">NU Online · Kajian Kitab Terjemah</p>
+    </div>
+  </div>
+</section>
+
+<!-- DOWNLOAD -->
+<section class="dl-section" id="download">
+  <div class="dl-left reveal">
+    <span class="s-label">Unduh Sekarang</span>
+    <h2 class="s-title" style="color:var(--white);">Gratis. Selamanya.<br>Tanpa Syarat.</h2>
+    <p class="s-desc">Maktabah Mukmen lahir sebagai amal jariyah — bebas digunakan oleh siapa saja, tanpa iklan, tanpa berbayar.</p>
+    <div class="dl-points">
+      <div class="dl-point">Tersedia untuk Android (APK) dan semua browser</div>
+      <div class="dl-point">Versi web bisa dipakai di laptop, iPhone, tablet</div>
+      <div class="dl-point">Tidak ada iklan, tidak ada pelacak data</div>
+      <div class="dl-point">Tidak perlu daftar atau login</div>
+      <div class="dl-point">Semua kitab bersumber dari koleksi publik</div>
+    </div>
+  </div>
+  <div class="dl-card reveal">
+    <div class="dl-app-icon">📚</div>
+    <p class="dl-app-name">مكتبة مؤمن</p>
+    <p class="dl-app-sub">Maktabah Mukmen · v1.0.0 · Android, Windows & Web</p>
+    <div class="dl-meta">
+      <div class="dl-meta-item">
+        <span class="dl-meta-label">Android</span>
+        <span class="dl-meta-val">APKPure</span>
+      </div>
+      <div class="dl-meta-item">
+        <span class="dl-meta-label">Windows</span>
+        <span class="dl-meta-val">.exe</span>
+      </div>
+      <div class="dl-meta-item">
+        <span class="dl-meta-label">Web</span>
+        <span class="dl-meta-val">Browser</span>
+      </div>
+    </div>
+    <a href="https://apkpure.com/p/com.mukmen.maktabahilm" target="_blank" class="btn-dl-big">
+      📱 &nbsp; Download Android (APK)
+    </a>
+    <a href="https://drive.google.com/uc?export=download&id=15NVBXcJQdaWiZb7rFd6uuo3fMb71jhDI" target="_blank" class="btn-dl-big" style="background:#2a5298; margin-top:0.5rem;">
+      💻 &nbsp; Download Windows (.exe)
+    </a>
+    <a href="https://rig-community.github.io/maktabah-mukmen/app" target="_blank" class="btn-dl-big" style="background:var(--teal); margin-top:0.5rem;">
+      🌐 &nbsp; Buka Versi Web (Semua Perangkat)
+    </a>
+    <p class="dl-note">
+      Android · Windows · iPhone · Laptop · Tablet — semua bisa akses<br>
+      Gratis selamanya, tanpa iklan, tanpa daftar
+    </p>
+  </div>
+</section>
+
+<!-- CARA INSTALL -->
+<section class="install-section" id="install">
+  <div class="reveal">
+    <span class="s-label">Panduan Instalasi</span>
+    <h2 class="s-title">Cara Install di Android</h2>
+    <p class="s-desc">Empat langkah mudah dan aplikasi siap digunakan.</p>
+  </div>
+  <div class="install-steps">
+    <div class="install-step reveal">
+      <h4>Unduh File APK</h4>
+      <p>Tekan tombol Download di atas. File APK akan tersimpan di folder Unduhan perangkat Anda.</p>
+    </div>
+    <div class="install-step reveal">
+      <h4>Izinkan Sumber Tidak Dikenal</h4>
+      <p>Masuk ke Pengaturan → Keamanan (atau Privasi) → aktifkan "Instal aplikasi dari sumber tidak dikenal".</p>
+    </div>
+    <div class="install-step reveal">
+      <h4>Buka File APK</h4>
+      <p>Buka aplikasi File Manager, cari file <em>maktabah_mukmen.apk</em>, lalu ketuk untuk memulai proses instalasi.</p>
+    </div>
+    <div class="install-step reveal">
+      <h4>Install & Mulai Membaca</h4>
+      <p>Tekan "Instal" dan tunggu selesai. Buka aplikasi, pilih kategori kitab, dan mulai perjalanan ilmu Anda.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ULASAN -->
+<section class="ulasan-section" id="ulasan">
+  <div class="reveal">
+    <span class="s-label">Kata Pengguna</span>
+    <h2 class="s-title">Ulasan <span>Pembaca Kitab</span></h2>
+    <p class="s-desc">Bagikan pengalaman Anda menggunakan Maktabah Mukmen. Ulasan Anda membantu sesama penuntut ilmu.</p>
+  </div>
+
+  <!-- Form Kirim Ulasan -->
+  <div class="ulasan-form-wrap reveal">
+    <div class="ulasan-form-card">
+      <h3 class="ulasan-form-title">Tulis Ulasan Anda</h3>
+      <div class="form-group">
+        <label>Nama</label>
+        <input type="text" id="ul-nama" placeholder="Nama Anda" maxlength="50">
+      </div>
+      <div class="form-group">
+        <label>Peran / Asal</label>
+        <input type="text" id="ul-peran" placeholder="Contoh: Santri, Mahasiswa, Balikpapan" maxlength="60">
+      </div>
+      <div class="form-group">
+        <label>Bintang</label>
+        <div class="star-picker" id="star-picker">
+          <span data-val="1">★</span>
+          <span data-val="2">★</span>
+          <span data-val="3">★</span>
+          <span data-val="4">★</span>
+          <span data-val="5">★</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Ulasan</label>
+        <textarea id="ul-teks" placeholder="Ceritakan pengalaman Anda menggunakan Maktabah Mukmen..." rows="3" maxlength="300"></textarea>
+      </div>
+      <button id="btn-kirim" onclick="kirimUlasan()">Kirim Ulasan</button>
+      <p id="ul-status" style="font-size:0.82rem; margin-top:0.75rem; color:var(--teal); display:none;"></p>
+    </div>
+  </div>
+
+  <!-- Daftar Ulasan -->
+  <div id="ulasan-list" class="ulasan-list"></div>
+</section>
+
+<!-- AMAL JARIYAH -->
+<section class="amal-section reveal">
+  <p class="amal-ar">مَنْ سَلَكَ طَرِيقًا يَلْتَمِسُ فِيهِ عِلْمًا سَهَّلَ اللَّهُ لَهُ طَرِيقًا إِلَى الْجَنَّةِ</p>
+  <p class="amal-text">"Barang siapa menempuh suatu jalan untuk mencari ilmu, maka Allah akan memudahkan baginya jalan menuju surga." — HR. Muslim</p>
+  <p style="margin-top:1.5rem; font-size:0.85rem; color:var(--ink-muted);">Aplikasi ini lahir dari keinginan sederhana: mempermudah akses ilmu agama sebagai amal jariyah yang terus mengalir manfaatnya.</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <p class="footer-brand">المكتبة المؤمن</p>
+    <p style="font-size:0.75rem; color:rgba(255,255,255,0.25); margin-top:4px;">Perpustakaan Kitab Islam Digital · Gratis Selamanya</p>
+  </div>
+  <p class="footer-text">Dibuat sebagai <span>amal jariyah</span> untuk umat Islam Indonesia<br>Semua kitab bersumber dari koleksi publik yang dapat diakses bebas</p>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, collection, addDoc, getDocs, orderBy, query, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAddTWAav6kr8AMTEO9zoatldJUtiym4b4",
+  authDomain: "maktabah-mukmen-16469.firebaseapp.com",
+  projectId: "maktabah-mukmen-16469",
+  storageBucket: "maktabah-mukmen-16469.firebasestorage.app",
+  messagingSenderId: "482031568874",
+  appId: "1:482031568874:web:e0aaa698b420c5a68bd493",
+  measurementId: "G-Z3EWMMP6D4"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+let bintangDipilih = 0;
+
+// Star picker
+document.querySelectorAll('#star-picker span').forEach(s => {
+  s.addEventListener('mouseover', () => {
+    document.querySelectorAll('#star-picker span').forEach((x, i) => {
+      x.classList.toggle('aktif', i < parseInt(s.dataset.val));
+    });
+  });
+  s.addEventListener('click', () => {
+    bintangDipilih = parseInt(s.dataset.val);
+  });
+  document.getElementById('star-picker').addEventListener('mouseleave', () => {
+    document.querySelectorAll('#star-picker span').forEach((x, i) => {
+      x.classList.toggle('aktif', i < bintangDipilih);
+    });
+  });
+});
+
+// Kirim ulasan
+window.kirimUlasan = async function() {
+  const nama = document.getElementById('ul-nama').value.trim();
+  const peran = document.getElementById('ul-peran').value.trim();
+  const teks = document.getElementById('ul-teks').value.trim();
+  const status = document.getElementById('ul-status');
+  const btn = document.getElementById('btn-kirim');
+
+  if (!nama) { alert('Nama wajib diisi.'); return; }
+  if (!teks) { alert('Ulasan wajib diisi.'); return; }
+  if (bintangDipilih === 0) { alert('Pilih bintang terlebih dahulu.'); return; }
+
+  btn.disabled = true;
+  btn.textContent = 'Mengirim...';
+
+  try {
+    await addDoc(collection(db, 'ulasan'), {
+      nama, peran, teks,
+      bintang: bintangDipilih,
+      waktu: serverTimestamp()
+    });
+    status.style.display = 'block';
+    status.textContent = 'Jazakallahu khairan! Ulasan Anda berhasil dikirim.';
+    document.getElementById('ul-nama').value = '';
+    document.getElementById('ul-peran').value = '';
+    document.getElementById('ul-teks').value = '';
+    bintangDipilih = 0;
+    document.querySelectorAll('#star-picker span').forEach(x => x.classList.remove('aktif'));
+    muatUlasan();
+  } catch(e) {
+    alert('Gagal mengirim. Coba lagi.');
+  }
+  btn.disabled = false;
+  btn.textContent = 'Kirim Ulasan';
+};
+
+// Muat ulasan dari Firestore
+async function muatUlasan() {
+  const list = document.getElementById('ulasan-list');
+  list.innerHTML = '<div class="ulasan-loading">Memuat ulasan...</div>';
+  try {
+    const q = query(collection(db, 'ulasan'), orderBy('waktu', 'desc'));
+    const snap = await getDocs(q);
+    if (snap.empty) {
+      list.innerHTML = '<div class="ulasan-empty">Belum ada ulasan. Jadilah yang pertama menulis!</div>';
+      return;
+    }
+    list.innerHTML = '';
+    snap.forEach(doc => {
+      const d = doc.data();
+      const inisial = (d.nama || '?').split(' ').map(w => w[0]).join('').toUpperCase().slice(0,2);
+      const bintang = '★'.repeat(d.bintang) + '☆'.repeat(5 - d.bintang);
+      list.innerHTML += `
+        <div class="ulasan-card">
+          <div class="ulasan-stars">${bintang}</div>
+          <p class="ulasan-teks">"${d.teks}"</p>
+          <div class="ulasan-author">
+            <div class="ulasan-avatar">${inisial}</div>
+            <div>
+              <p class="ulasan-nama">${d.nama}</p>
+              <p class="ulasan-peran">${d.peran || ''}</p>
+            </div>
+          </div>
+        </div>`;
+    });
+  } catch(e) {
+    list.innerHTML = '<div class="ulasan-empty">Gagal memuat ulasan.</div>';
+  }
+}
+
+muatUlasan();
+</script>
+</body>
+</html>
